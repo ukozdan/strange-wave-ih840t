@@ -11,10 +11,10 @@ import "./styles.css";
 
 //------------------------------------------------------------
 const CertStat = () => {
-  let businessStream = "ocr";
-  let fastTrackVisible = true;
-  let fastTrackChecked = false;
-  let trackedDeliveryEnabled = true;
+  let businessStream: string = "ocr";
+  let fastTrackVisible: boolean = true;
+  let fastTrackChecked: boolean = false;
+  let trackedDeliveryEnabled: boolean = true;
 
   let handleYears = () => {
     let years: { id: string; year: number; edit: boolean }[] = [];

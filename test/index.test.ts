@@ -1,7 +1,7 @@
 import CertStat from "../src/index";
 import { v4 as uuidv4 } from "uuid";
 
-//let thing = CertStat.fastTrackAddYear();
+let addYear = CertStat.fastTrackAddYear();
 
 describe("CertStat", () => {
   test("should be defined", () => {
