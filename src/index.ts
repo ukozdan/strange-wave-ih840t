@@ -11,28 +11,30 @@ import "./styles.css";
 </div>`;*/
 
 //------------------------------------------------------------
-interface props {
-  businessStream: string;
-  fastTrackVisible: boolean;
-  fastTrackChecked: boolean;
-  trackedDeliveryEnabled: boolean;
-  newYear: number;
-  yearsOnly: number[];
-  years: [
-      id: string,
-      year: number,
-      edit: boolean
+interface Props {
+  businessStream?: string;
+  fastTrackVisible?: boolean;
+  fastTrackChecked?: boolean;
+  trackedDeliveryEnabled?: boolean;
+  newYear?: number;
+  yearsOnly?: number[];
+  years?: [
+    {
+      id: string;
+      year: number;
+      edit: boolean;
+    }
   ];
 }
 
-const CertStat: FC<props> = ({ ...props }) => {
+const CertStat = (props: Props) => {
   let businessStream = "ocr";
   let fastTrackVisible = true;
   let fastTrackChecked = false;
   let trackedDeliveryEnabled = true;
 
   let handleYears = () => {
-    let years: (string|number|boolean)[] = [];
+    let years = [];
 
     let addYear = (id: string, newYear: number, edit: boolean) => {
       let index: number = years.findIndex((object) => {
