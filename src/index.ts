@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./styles.css";
 
@@ -10,14 +11,25 @@ import "./styles.css";
 </div>`;*/
 
 //------------------------------------------------------------
-const CertStat = () => {
-  let businessStream: string = "ocr";
-  let fastTrackVisible: boolean = true;
-  let fastTrackChecked: boolean = false;
-  let trackedDeliveryEnabled: boolean = true;
+interface props {
+  businessStream: string;
+  fastTrackVisible: boolean;
+  fastTrackChecked: boolean;
+  trackedDeliveryEnabled: boolean;
+  id: string;
+  newYear: number;
+  edit: boolean;
+  years: { id: string; year: number; edit: boolean }[];
+}
+
+const CertStat: FC<props> = () => {
+  let businessStream = "ocr";
+  let fastTrackVisible = true;
+  let fastTrackChecked = false;
+  let trackedDeliveryEnabled = true;
 
   let handleYears = () => {
-    let years: { id: string; year: number; edit: boolean }[] = [];
+    let years = [];
 
     let addYear = (id: string, newYear: number, edit: boolean) => {
       let index: number = years.findIndex((object) => {
@@ -110,6 +122,5 @@ const CertStat = () => {
 };
 
 export default CertStat;
-//module.exports = CertStat;
 
 //------------------------------------------------------------
