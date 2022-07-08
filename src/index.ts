@@ -18,6 +18,7 @@ interface props {
   trackedDeliveryEnabled: boolean;
   id: string;
   newYear: number;
+  yearsOnly: number[];
   edit: boolean;
   years: { id: string; year: number; edit: boolean }[];
 }
