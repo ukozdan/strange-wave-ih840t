@@ -16,21 +16,23 @@ interface props {
   fastTrackVisible: boolean;
   fastTrackChecked: boolean;
   trackedDeliveryEnabled: boolean;
-  id: string;
   newYear: number;
   yearsOnly: number[];
-  edit: boolean;
-  years: { id: string; year: number; edit: boolean }[];
+  years: [
+      id: string,
+      year: number,
+      edit: boolean
+  ];
 }
 
-const CertStat: FC<props> = () => {
+const CertStat: FC<props> = ({ ...props }) => {
   let businessStream = "ocr";
   let fastTrackVisible = true;
   let fastTrackChecked = false;
   let trackedDeliveryEnabled = true;
 
   let handleYears = () => {
-    let years = [];
+    let years: (string|number|boolean)[] = [];
 
     let addYear = (id: string, newYear: number, edit: boolean) => {
       let index: number = years.findIndex((object) => {
