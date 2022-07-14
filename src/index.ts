@@ -1,4 +1,3 @@
-import React, { FC } from "react";
 import { v4 as uuidv4 } from "uuid";
 import "./styles.css";
 
@@ -11,35 +10,21 @@ import "./styles.css";
 </div>`;*/
 
 //------------------------------------------------------------
-interface Props {
-  businessStream?: string;
-  fastTrackVisible?: boolean;
-  fastTrackChecked?: boolean;
-  trackedDeliveryEnabled?: boolean;
-  newYear?: number;
-  yearsOnly?: number[];
-  years?: [
-    {
-      id: string;
-      year: number;
-      edit: boolean;
-    }
-  ];
-}
 
-const CertStat = (props: Props) => {
-  let businessStream = "ocr";
-  let fastTrackVisible = true;
-  let fastTrackChecked = false;
-  let trackedDeliveryEnabled = true;
+const CertStat = () => {
+  let businessStream: string = "ocr";
+  let fastTrackVisible: boolean = true;
+  let fastTrackChecked: boolean = false;
+  let trackedDeliveryEnabled: boolean = true;
 
   let handleYears = () => {
-    let years = [];
+    let years: { id: string; year: number; edit: boolean }[] = [];
 
     let addYear = (id: string, newYear: number, edit: boolean) => {
       let index: number = years.findIndex((object) => {
         return object.edit === true;
       });
+
       if (years.length !== 0) {
         if (index > -1) {
           years[index].id = id;
@@ -55,12 +40,14 @@ const CertStat = (props: Props) => {
 
     let deleteYear = (id: string) => {
       const index: number = years.findIndex((x) => x.id === id);
+
       years.splice(index, 1);
       // reset form
     };
 
     let editYear = (id: string) => {
       let foundIndex: number = years.findIndex((x) => x.id === id);
+
       if (years[foundIndex].id === id) {
         years[foundIndex].edit = true;
       } else {
@@ -70,9 +57,11 @@ const CertStat = (props: Props) => {
 
     let calculateMaxYear = () => {
       const yearsOnly: number[] = [];
+
       for (let i of years) {
         yearsOnly.push(i.year);
       }
+
       if (yearsOnly.length > 0) {
         return Math.max(...yearsOnly);
       } else {
@@ -98,7 +87,9 @@ const CertStat = (props: Props) => {
   let fastTrackAddYear = (id: string) => {
     if (businessStream === "ocr") {
       let selectedYear: number = 1999;
+
       newHandleYears.addYear(id, selectedYear, false);
+
       let seriesYearMax: number = newHandleYears.calculateMaxYear();
 
       if (seriesYearMax < 2000 && fastTrackVisible === true) {
@@ -113,7 +104,9 @@ const CertStat = (props: Props) => {
 
   let fastTrackDeleteYear = (id: string) => {
     newHandleYears.deleteYear(id);
+
     let seriesYearMax: number = newHandleYears.calculateMaxYear();
+
     if (seriesYearMax < 2000) {
       fastTrackVisible = false;
     } else if (seriesYearMax > 1999 && fastTrackVisible === false) {
